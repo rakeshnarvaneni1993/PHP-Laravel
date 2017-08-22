@@ -67,9 +67,9 @@ class ExampleController extends Controller
 {
     public function index()
     {
-        $posts = Post::get();
+        $beads = Post::get();
 
-        return response()->success(compact('posts'));
+        return response()->success(compact('beads'));
     
     }
 }
