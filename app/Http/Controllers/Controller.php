@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Articles;
+use App\BeadsExamples;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -73,5 +74,23 @@ class ExampleController extends Controller
     
     }
 }
+class BeadsArticleController extends Controller
+{
+    public function index()
+    {
+        $beadsArticles = Articles::get();
 
+        return response()->success(compact('beadsArticles'));
+    
+    }
+}
+class BeadsExampleController extends Controller
+{
+    public function index()
+    {
+        $beadsExamples = BeadsExamples::get();
 
+        return response()->success(compact('beadsExamples'));
+    
+    }
+}

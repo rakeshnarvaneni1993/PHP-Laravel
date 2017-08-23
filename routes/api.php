@@ -19,4 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/posts', 'ExampleController@index');
 
-Route::get('/example', array('middleware' => 'cors', 'uses' => 'ExampleController@index'));
+Route::get('/beads-articles', 'BeadsArticleController@index');
+
+Route::get('/beads-examples', 'BeadsExampleController@index');
