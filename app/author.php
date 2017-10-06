@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class author extends Model
 {
-    //
-    protected $table = "actions";  
+        protected $table = "author";  
+
 }

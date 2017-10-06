@@ -1,8 +1,14 @@
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
-        Options -MultiViews
+      Options -MultiViews
     </IfModule>
 
+    <IfModule mod_headers.c>
+        SetEnvIf Origin "http(s)?://([^.]+\.)?(mysite.com|local:4200|localhost:4200)$" AccessControlAllowOrigin=$0$1
+        Header add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+        Header set Access-Control-Allow-Credentials true
+    </IfModule>
+    php_value always_populate_raw_post_data -1
     RewriteEngine On
 
     # Redirect Trailing Slashes If Not A Folder...

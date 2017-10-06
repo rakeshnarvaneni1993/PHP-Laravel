@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class COursePut extends Model
 {
-    //
-    protected $table = "actions";  
+    protected $table = 'test'
 }
