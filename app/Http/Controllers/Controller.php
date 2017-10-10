@@ -153,7 +153,7 @@ class BeadsJoinController extends Controller
 
         $problems = DB::select('select * from beads_problems');
         $examples = DB::select('select * from beads_examples');
-        $articles = DB::select('select * from beads_articles');
+        $articles = DB::select('select * from beads_article');
         $actualBeads = DB::select('select * from beads');
         $beadFlash = DB::select('select * from beads_flash');
         $beadsummary = DB::select('select * from beads_summary');
@@ -461,7 +461,6 @@ class UpdateTopicsController extends Controller
     {
         $exist = DB::table('topics')->where(['Title'=>$request->input('Title'),
         'Chapter_ID'=>$request->input('Chapter_ID')])->get();  
-        echo $exist;
         if(count($exist) > 0){
             echo 'Chapter Already Exists';
         } else {
@@ -485,7 +484,7 @@ class KWBeadsController extends Controller
 
         $problems = DB::select('select * from kw_beads_problems');
         $examples = DB::select('select * from kw_beads_examples');
-        $articles = DB::select('select * from kw_beads_articles');
+        $articles = DB::select('select * from kw_beads_article');
         $actualBeads = DB::select('select * from kw_beads');
         $beadFlash = DB::select('select * from kw_beads_flash');
         $beadsummary = DB::select('select * from kw_beads_summary');
