@@ -36,6 +36,7 @@ Route::patch('put-beads-data', 'UpdateBeadsController@index');
 
 Route::patch('put-beads-problems-data', 'UpdateBeadsProblemsController@index'); 
 
+Route::patch('sign-up', 'SignUpController@index'); 
 
 
 

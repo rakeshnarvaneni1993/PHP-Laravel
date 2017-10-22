@@ -11,6 +11,7 @@ use App\UpdateTopics;
 use COursePut;
 use App\UpdateBeads;
 use DB;
+use Hash;
 use App\beads_problems;
 use App\CourseData;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -153,7 +154,7 @@ class BeadsJoinController extends Controller
 
         $problems = DB::select('select * from beads_problems');
         $examples = DB::select('select * from beads_examples');
-        $articles = DB::select('select * from beads_article');
+        $articles = DB::select('select * from beads_articles');
         $actualBeads = DB::select('select * from beads');
         $beadFlash = DB::select('select * from beads_flash');
         $beadsummary = DB::select('select * from beads_summary');
@@ -416,16 +417,17 @@ class UpdateBeadsController extends Controller
 {
     public function index( Request $request )     
     {
+        echo is_null($request->index);
 
         if(is_null($request->index)){
-             DB::table('beads_' . $request->table) ->where('bead_id', $request->id)
+             DB::table('beads_'.$request->table) ->where('bead_id', $request->id)
             ->update([$request->table => $request->updatedData]);
 
             echo 'Added Successfully';
         }
         else{
 
-            $id = DB::select('select * from beads_examples where bead_id = '.$request->id );
+            $id = DB::select('select * from beads_'.$request->table .'s '.'where bead_id = '. $request->id );
             $result = $id[$request->index];
             $actualId = $result -> ID;
             DB::table('beads_' . $request->table.'s') 
@@ -475,6 +477,28 @@ class UpdateTopicsController extends Controller
     
     }
 }
+
+
+class SignUpController extends Controller
+{
+    public function index( Request $request )     
+    {
+
+        try {
+        $user = ['name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password)];
+
+        User::create($user);
+
+        echo 'Added Successfully';
+
+    }  catch(\Illuminate\Database\QueryException $ex){ 
+            echo "Account Already Exists" ;
+}
+
+        }
+    
+        } 
+    
 
 
 class KWBeadsController extends Controller
